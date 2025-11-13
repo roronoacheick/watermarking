@@ -101,8 +101,19 @@ def encode_lsb1(image_array, binary_message):
 					break
 	return encoded
 
-
-
+def decode_lsb1(encoded_image, message_length):
+	rows, cols = encoded_image.shape
+	total_bits = message_length * 8
+	binary_message = ""
+	index = 0
+	for y in range(rows):
+		for x in range(cols):
+			if index < total_bits:
+				binary_message += str(encoded_image[y, x] % 2)
+				index += 1
+			else:
+				break
+	return text_to_binary(binary_message)
 
 if __name__ == "__main__":
 	message = "le chocolat est bon"
@@ -122,5 +133,9 @@ if __name__ == "__main__":
 
 	message = "One piece"
 	binary_message = text_to_binary(message)
+	print("Message original :", message)
+	
 	encoded_image = encode_lsb1(even_image, binary_message)
 	Image.fromarray(encoded_image).show()
+	decoded_message = decode_lsb1(encoded_image, len(message))
+	print("Message décodé :", decoded_message)
