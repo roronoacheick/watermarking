@@ -41,6 +41,27 @@ def vigenere_cipher(text, password, cipher):
 	return crypted_text
 
 
+
+
+from PIL import Image
+import numpy as np
+
+# Execercice 1
+try:
+	image = Image.open("Les_pilliers.png")
+except FileNotFoundError:
+	print("Erreur : Impossible de trouver l'image")
+	exit()
+
+image.show()
+image_np = np.array(image)
+
+
+
+
+
+
+
 if __name__ == "__main__":
 	message = "le chocolat est bon"
 
