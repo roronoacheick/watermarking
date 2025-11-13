@@ -79,10 +79,18 @@ Image.fromarray(even_image).show()
 print("Pixel original (50,100) :", gray_np[50, 100])
 print("Pixel transformé en pair (50,100) :", even_image[50, 100])
 
+
+def text_to_binary(message):
+	return ''.join(format(ord(c), "08b") for c in message)
+
+
+
+
+
 if __name__ == "__main__":
 	message = "le chocolat est bon"
 
-	crypted_text = cesar_cipher(message, 12, cipher=True) # exo 1
+	crypted_text = cesar_cipher(message, 12, cipher=True) # exo 1Ò
 	print(crypted_text)
 
 	initial_message = cesar_cipher(crypted_text, 12, cipher=False) # exo 2
