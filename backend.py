@@ -68,7 +68,16 @@ else:
 print("Dimensions de l'image :", image_np.shape)
 
 
+gray_image = image.convert("L") 
+gray_image.show()
+gray_np = np.array(gray_image)
+print("Dimensions de l'image en gris :", gray_np.shape)
 
+even_image = gray_np.copy()
+even_image[even_image % 2 != 0] -= 1
+Image.fromarray(even_image).show()
+print("Pixel original (50,100) :", gray_np[50, 100])
+print("Pixel transformé en pair (50,100) :", even_image[50, 100])
 
 if __name__ == "__main__":
 	message = "le chocolat est bon"
