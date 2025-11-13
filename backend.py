@@ -83,6 +83,23 @@ print("Pixel transformé en pair (50,100) :", even_image[50, 100])
 def text_to_binary(message):
 	return ''.join(format(ord(c), "08b") for c in message)
 
+def encode_lsb1(image_array, binary_message):
+	encoded = image_array.copy()
+	rows, cols = encoded.shape
+	total_pixels = rows * cols
+	if len(binary_message) > total_pixels:
+		raise ValueError("Le message est trop long pour l'image.")
+	
+	index = 0
+	for y in range(rows):
+		for x in range(cols):
+			if index < len(binary_message):
+				if binary_message[index] == '1':
+					if encoded[y, x] % 2 == 0:
+						encoded[y, x] += 1
+				else:
+					break
+	return encoded
 
 
 
@@ -102,3 +119,8 @@ if __name__ == "__main__":
 	print(crypted_message)
 	initial_message = vigenere_cipher(text=crypted_message, password="Azerty12345!", cipher=False)
 	print(initial_message)
+
+	message = "One piece"
+	binary_message = text_to_binary(message)
+	encoded_image = encode_lsb1(even_image, binary_message)
+	Image.fromarray(encoded_image).show()
