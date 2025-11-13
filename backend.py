@@ -46,7 +46,7 @@ def vigenere_cipher(text, password, cipher):
 from PIL import Image
 import numpy as np
 
-# Execercice 1
+
 try:
 	image = Image.open("Les_pilliers.png")
 except FileNotFoundError:
@@ -56,8 +56,16 @@ except FileNotFoundError:
 image.show()
 image_np = np.array(image)
 
+x ,y = 50, 100
+pixel = image_np [y, x]
+print(f"Valeur du pixel à ({x}, {y}) : {pixel}")
 
+if len(pixel) == 3:
+	 print(f"Rouge : {pixel[0]}, Vert : {pixel[1]}, Bleu : {pixel[2]}")
+else:
+	print("Pixel en niveaux de gris :", pixel)
 
+print("Dimensions de l'image :", image_np.shape)
 
 
 
