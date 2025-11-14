@@ -102,7 +102,7 @@ def encode_lsb1(image_array, binary_message):
 	return encoded
 
 def decode_lsb1(encoded_image, message_length):
-	rows, cols = encoded_image.shape
+	rows, cols = encoded_image.shape[:2]
 	total_bits = message_length * 8
 	binary_message = ""
 	index = 0
