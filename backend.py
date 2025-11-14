@@ -85,7 +85,7 @@ def text_to_binary(message):
 
 def encode_lsb1(image_array, binary_message):
 	encoded = image_array.copy()
-	rows, cols = encoded.shape
+	rows, cols = encoded.shape[:2]
 	total_pixels = rows * cols
 	if len(binary_message) > total_pixels:
 		raise ValueError("Le message est trop long pour l'image.")
